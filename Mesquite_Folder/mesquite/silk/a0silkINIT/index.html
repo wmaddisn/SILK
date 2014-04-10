@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>SILK package for Mesquite</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="19%"><img src="docImages/logo.gif" width="164" height="64"></td>
+    <td width="81%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td><font color="#996633" size="+2">Simple Image LinKing Package for Mesquite</font></td>
+        </tr>
+        <tr>
+          <td><p>Wayne P. Maddison &amp; Mart&iacute;n J. Ram&iacute;rez</p>
+            </td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+6 September 2009, version 1.11
+<p>This is a quick guide to use of the SILK package. This SILK package was described 
+  in: Ram&iacute;rez, M.J., J.A. Coddington, W.P. Maddison, P.E. Midford, L. Prendini, 
+  J. Miller, C.E. Griswold, G. Hormiga, P. Sierwald, N. Scharff, S.P. Benjamin, 
+  &amp; W.C. Wheeler. 2007. Linking of digital Images to phylogenetic data matrices 
+  using a morphological ontology. Systematic Biology. 56:283&#8211;294</p>
+<p>SILK has two main functions:</p>
+<ol>
+  <li>to show images attached to the cells of the matrix easily and with little 
+    burden on your NEXUS data file.</li>
+  <li>to show images illustrating typical examples of each of the states of each 
+    character</li>
+</ol>
+<p>This is accomplished by setting up repository of images that contains an index 
+  file,separate from your data file, that tells SILK where to the images. Then, 
+  you tell SILK how to find this repository, so that it can find and display the 
+  images.</p>
+<p>SILK's website is <a href="http://mesquiteproject.org/packages/SILK">http://mesquiteproject.org/packages/SILK</a>.</p>
+<p>This page explains how to set this up. Contents:</p>
+<ul>
+  <li><a href="#bugs">0. Bugs</a></li>
+  <li><a href="#installing">1. Installing SILK</a></li>
+  <li><a href="#settingup">2. Setting up the indexed images</a></li>
+  <li><a href="#basicconcepts">3. Basic Concepts</a></li>
+  <li><a href="#indexfiles">4. Index files</a></li>
+  <li><a href="#uniqueids">5. Unique ID's in Mesquite</a></li>
+  <li><a href="#prefixes">6. Prefixes</a></li>
+  <li><a href="#linking">7. Linking from your data file</a></li>
+  <li><a href="#displaying">8. Displaying</a></li>
+  <li><a href="#annotations">9. Built-in annotations</a></li>
+</ul>
+<h3><a name="bugs"></a>0. Bugs (here so we won't forget them!)</h3>
+<ul>
+  <li>None known at the moment</li>
+</ul>
+<h3><a name="installing"></a>1. Installing SILK</h3>
+<p>THIS version of SILK requires Mesquite version 2.5. It is incompatible with version 
+  1.12 and earlier.</p>
+<p>As of version 2.7 of Mesquite, you can install SILK by selecting Check Now for Notices/Installs in the File menu, and entering the following URL:</p>
+<blockquote>
+  <pre>http://mesquiteproject.org/packages/SILK/install.xml</pre>
+</blockquote>
+<p>Mesquite's installer will then lead you through the installation process.</p>
+<p>You can also install SILK by hand. Download it at <a href="http://mesquiteproject.org/packages/SILK/SILK.zip">http://mesquiteproject.org/packages/SILK/SILK.zip</a>. When you unzip it, you will find it makes a directory 
+  &quot;silk&quot;. Please move &quot;silk&quot; inside the mesquite folder within 
+  your Mesquite_Folder. Thus, when you have moved it, you should have &quot;silk&quot;, 
+  within &quot;mesquite&quot;, within &quot;Mesquite_Folder&quot;. The next time 
+  you start Mesquite, it should load SILK (a SILK banner will appear in the startup 
+window).</p>
+<p>Source code for SILK may be found at http://svn.mesquiteproject.org:8080/repository/SILK/</p>
+<p>SILK also comes with example files. You can find them in the examples folder 
+  <a href="examples">here</a>. We recommend you try them.</p>
+<h3><a name="settingup"></a>2. Setting up the indexed images</h3>
+<p>NOTE: in the near future we hope to provide direct database links as an alternative 
+  to the index file system.</p>
+<p>In the meantime, SILK uses a simple set of index files to help Mesquite find 
+  the images.</p>
+<p>Your images and their indices should be arranged within a single directory 
+  as follows:</p>
+<ul>
+  <li><strong>ImageDirectory</strong> (you may choose the name of this) 
+    <ul>
+      <li><strong>TaxaToTerminals.txt</strong> &#8212; one of the <a href="#indexfiles">index 
+        files</a></li>
+      <li><strong>CharsToMorphology.txt</strong> &#8212; one of the <a href="#indexfiles">index 
+        files</a></li>
+      <li><strong>ImageData.txt</strong> &#8212; one of the <a href="#indexfiles">index 
+        files</a></li>
+      <li><strong>CharStateImageTypification.txt</strong> &#8212; one of the <a href="#indexfiles">index 
+        files</a></li>
+      <li><strong>LowRes</strong> &#8212; A directory (folder); contains low resolution 
+        version of images as jpeg or gifs 
+        <ul>
+          <li>(contents organized as you wish)</li>
+          <li>_prefixes.txt &#8212; (optional) prefix file</li>
+        </ul>
+      </li>
+      <li><strong>HighRes</strong> &#8212; A directory (folder); contains high 
+        resolution version of images as jpeg or gifs 
+        <ul>
+          <li>(contents must have exact same structure and names as LowRes except 
+            for <a href="#prefixes">prefixes</a>)</li>
+          <li>_prefixes.txt &#8212; (optional) prefix file</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<h3><a name="basicconcepts"></a>3. Basic concepts</h3>
+<p>Your images come from a particular specimen or species, and display a particular 
+  views of the specimens that may show one or more characters. Your data file 
+  contains a data matrix of taxa (or terminals) by characters. To link the images 
+  to the cells of the matrix, SILK needs to know how these things correspond: 
+  which specimens or species belong to which rows (taxa) of the data matrix, and 
+  which views display which characters. SILK also needs to know where to find 
+  these images. The index files contain this information. </p>
+<p>The basic vocabulary is:</p>
+<ul>
+  <li><strong>Taxon in matrix</strong> &#8212; this is the formal taxon, corresponding 
+    to a row in your data matrix. For example, two of your formal taxa might be 
+    &quot;Drosophila&quot; and &quot;Musca&quot;. </li>
+  <li><strong>Image Taxon</strong> &#8212; this is the name of the specimen or 
+    species that you use when referring to a particular image. For instance, you 
+    might have taken several images of specimen &quot;D. melanogaster XMH34.a21.3-98&quot; 
+    and it may be entered into your database with this label. You might also have 
+    images from the literature labeled simply &quot;D. melanogaster&quot;. For 
+    the purposes of SILK these could be maintained (if you wish) as two separate 
+    &quot;image taxa&quot; that would refer to the same formal taxon in the matrix, 
+    &quot;Drosophila&quot;.</li>
+  <li><strong>Character in matrix</strong> &#8212; this is the formal character, 
+    a column in your data matrix.</li>
+  <li><strong>Standard views and standard anatomical regions</strong> &#8212; 
+    these represent the location and method by which an image was taken. These 
+    are defined more or less independently of particular taxa in your matrix. 
+    Thus, &quot;head, dorsal view, SEM&quot; might be a standard view which would 
+    available for all taxa in your study. Each view or region might include one 
+    or more characters.</li>
+</ul>
+<h3><a name="indexfiles"></a>4. Index files</h3>
+<p>Each index is a simple tab-delimited ASCII text file. You can make this in 
+  Microsoft Excel for example by saving a table as &quot;Text (tab-delimited)&quot;. 
+  Each file consists of</p>
+<ul>
+  <li>a first row with <strong>headings</strong>. It is important that you use 
+    the exact spelling (no spaces!) as shown below for each table. These headings 
+    tell SILK which column is which. Your table may include additional columns 
+    with other headings, and the columns may be in a different order than shown 
+    here. Thus, the headings are vital for SILK to find the columns it cares about.</li>
+  <li>subsequent rows representing taxa, characters, images, and so on.</li>
+</ul>
+<p>There are 4 index files in total. Three are needed to show images at each cell 
+  (TaxaToTerminals.txt, CharsToMorphology.txt, and ImageData.txt). One is needed 
+  to show images of typical examples of the character states (CharStateImageTypification.txt).</p>
+<h4>TaxaToTerminals.txt</h4>
+<p>This table indicates how the formal taxa in the NEXUS data file's matrix correspond 
+  to the &quot;Image taxa&quot; (see <a href="#basicconcepts">basic concepts</a>).</p>
+<p>The TaxonNameInMatrix is the name of the taxon in your NEXUS data file. The 
+  TaxonUniqueIDInMatrix is the taxon's unique ID stored within the NEXUS data 
+  file by Mesquite. The primary identifier used by SILK is the ID; if no match 
+  is found with that then the name is used as a backup. We recommend you turn 
+  on and use Mesquite's facilities for unique ID's. See the section on <a href="#uniqueids">unique 
+  IDs in Mesquite</a>.. </p>
+<p>The ImageTaxonID is your ID for a specimen or species of your image. This is 
+  to could be a name or some other ID; you might have obtained it from your database, 
+  or from the label on the image. </p>
+<p>This table, for instance, says that the image taxon Quidnubia maculata refers 
+  to the taxon &quot;Quidnubia&quot; in the data matrix. You may attach <strong>more 
+  than one</strong> image taxon to a matrix taxon by using multiple rows for the 
+  same matrix taxon, as shown below. You may also attach more than one image taxon 
+  to a matrix taxon by adding extra columns, each one with the header &quot;ImageTaxonID&quot;.</p>
+<p><img src="docImages/TaxaToTerminals.jpg" ></p>
+<h4>CharsToMorphology.txt</h4>
+<p>This table indicates how the formal characters in the NEXUS data file's matrix 
+  correspond to the standard views or standard anatomical regions. This is used 
+  because often, a single image taken of a standard view can show more than one 
+  character. In this case several characters would all make reference to the same 
+  MorphologyID (standard view).</p>
+<p>The CharID is the ID of the character of the matrix. SILK uses only the CharID; 
+  it does not use the character name. Thus you must use Mesquite's facilities 
+  to store ID's for the characters. See the section on <a href="#uniqueids">unique 
+  IDs in Mesquite</a>.. </p>
+<p>The MorphologyID lists the standard views that are useful for observing this 
+  character or the standard anatomical region that contains it. You can list more 
+  than one, as long each column has the same heading &quot;MorphologyID&quot;. 
+</p>
+<p>You may link <strong>more than one</strong> MorphologyID to a character by 
+  using multiple rows for the same character or by adding extra columns, each 
+  one with the header &quot;MorphologyID&quot;. </p>
+<p><img src="docImages/CharsToMorphology.jpg" ></p>
+<h4>ImageData.txt</h4>
+<p>This table indicates where the images for each ImageTaxon and standard view 
+  (MorphologyID) can be found. The ImageTaxonID must match one from the TaxaToTerminals 
+  table. The MorphologyID must match one in the CharsToMorphology table. The comment 
+  can be anything.</p>
+<p>SILK uses the RelativePath and ImageFileName to locate the files. Thus, if 
+  the image directory is /Users/wmaddisn/SILK/ImageDirectory then SILK would look 
+  for the image for Morphology SV87 in image taxon Fubonidia zia in /Users/wmaddisn/SILK/ImageDirectory/LowRes/fubonidia/fubonidiaGzmoid.gif 
+  for the low resolution image, and /Users/wmaddisn/SILK/ImageDirectory/HighRes/fubonidia/fubonidiaGzmoid.gif 
+  for the high resolution image. The Relative path is relative to your image directory.</p>
+<p><img src="docImages/ImageData.jpg"> </p>
+<h4>CharStateImageTypification.txt</h4>
+<p>This table is used only for the state typification via the States Images Panel. 
+  The CharID has already been explained. The CharName is currently not used to 
+  identify the character, but may be used in display. For each state of the character, 
+  you indicate an image file name and a relative path for the image that typifies 
+  that state. </p>
+<p><img src="docImages/CharStateImageTypification.jpg"></p>
+<h3><a name="uniqueids"></a>5. Unique ID's in Mesquite</h3>
+<p>For SILK's functioning, characters need and taxa should have &quot;unique&quot; 
+  id's assigned to them within Mesquite. The reason for this is to avoid problems 
+  if a taxon or character later changes names, even slightly.</p>
+<p>In Mesquite taxa and characters can have identification codes attached that 
+  persist even if the taxa or characters are renamed or reordered. </p>
+<p>Mesquite can generate these automatically, both when taxa and characters are 
+  created, and later. The ID's that Mesquite generates are not formally globally 
+  unique identifiers (e.g., they are not LSID's) though support for LSID's may 
+  come in the future. Rather, the Mesquite-generated ID's are &quot;probably unique&quot; 
+  and of a simple format. You can ask Mesquite to generate these unique ID's whenever 
+  taxa or characters are created by selecting the menu items in the Defaults menu. 
+  This is a global preference, and we recommend you turn this option on and leave 
+  it. </p>
+<p>If you have taxa or characters that are already created, you can assign them 
+  ID's by going to the List of Taxa window or List of Characters Window, turn 
+  on the column Unique ID's. Then, choose Fill Missing Unique IDs in the drop 
+  down menu when you touch the column heading.</p>
+<p>One disadvantage of turning on on Mesquite's generaton of unique ID's is that 
+  PAUP* will then refuse to read the file. However, you can insist that PAUP* 
+  read the file by calling PAUP*'s &quot;set noerrorstop&quot; command. Alternatively,you 
+  could export the file as Simple NEXUS format before running with PAUP*.</p>
+<h3><a name="prefixes"></a>6. Prefixes</h3>
+<p>Some users may prefer to have high and low resolution versions of their images 
+  with slightly different names. SILK permits them to have different prefixes. 
+  If, for example, all your low resolution images have the prefix &quot;LR_&quot; 
+  in front of the filename (as indicated in ImageData.txt and CharStateImageTypification.txt) 
+  the you can create a simple ASCII text file called &quot;_prefix.txt&quot;. 
+  It should contain only a single token, the prefix. If the prefix contains NEXUS 
+  punctuation, it's best to put it in single quotes. Thus, the file could contain 
+  only:</p>
+<p><code>'LR_'</code></p>
+<p>If this file is placed in LowRes, then all of the low resolution image file 
+  names will be assumed to begin with LR_. Thus, SILK would look for the low-resolution 
+  image for Morphology SV87 in image taxon Fubonidia zia in /Users/wmaddisn/SILK/ImageDirectory/LowRes/fubonidia/LR_fubonidiaGzmoid.gif</p>
+<p>Similarly, a file _prefix.txt can be put into HighRes to indicate the prefix 
+  that all high resolution image names have.</p>
+<h3><a name="linking"></a>7. Linking from your data file</h3>
+<p>After the index files are created and the images are sorted into the appropriate 
+  directories, and the data file is made and filled with the appropriate unique 
+  ID's then in order to display the images at the cells you need only tell the 
+  data file where to find the images and indices directory. Do this by going to 
+  the Indexed Image Location menu item in the Matrix menu of the Character Matrix 
+  Editor. A dialog box like this will appear:</p>
+<p align="center"><img src="docImages/indexLoc.jpg"></p>
+<p>You can either choose Use Local Directory or Use Remote Server. If you choose 
+  to use a remote server, then you will be asked to enter a URL. For example, 
+  the example index and image files for SILK are distributed with SILK, but are 
+  also present on a server at:</p>
+<p>http://mesquiteproject.org/SILK/examples/indexedImages/</p>
+<h3><a name="displaying"></a>8. Displaying the images</h3>
+<p>To ask that the images at cells be displayed, select Show Cell Info Panel in 
+  the Matrix menu of the Character Matrix Editor. Here is an example showing images 
+  at cells for a spider data matrix:</p>
+<p align="center"><img src="docImages/cellInfoPanel.jpg" width="669" height="416"></p>
+<p>To find out whether there are any images attached to cells, go to the Matrix 
+  menu, Color Cells submenu, and choose &quot;Databased Images Present&quot;. 
+  The cells colored blue have images linked.</p>
+<p>To ask that the images be displayed showing typical images of particular character 
+  states, select Show State Info Panel in the Matrix menu of the Character Matrix 
+  Editor. Here is an example of its use:</p>
+<p align="center"><img src="docImages/statesInfoPanel.jpg" width="465" height="386"></p>
+<h3><a name="annotations"></a>9. Built in annotations</h3>
+<p>Recall that you can attach images to objects as annotations without the SILK 
+  package using the annotations panel of the Character Matrix Editor and the State 
+  Names Editor.</p>
+<hr>
+<p>Copyright &copy; 2006-2008 W.P. Maddison &amp; M.J. Ram&iacute;rez</p>
+<p>&nbsp;</p>
+</body>
+</html>

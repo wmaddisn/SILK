@@ -1,0 +1,68 @@
+format-version: 1.0
+version: 0.8.4
+date: 08:09:2008 20:03
+saved-by: Wayne Maddison
+auto-generated-by: nothing
+default-namespace: fubonidian_Anatomy
+
+[Term]
+id: FUB:0000000
+name: anatomical entity
+xref_analog: CARO:0000000
+
+[Term]
+id: FUB:0000001
+name: whole organism
+is_a: FUB:0000000 ! anatomical entity
+
+[Term]
+id: FUB:0000002
+name: dorsule
+def: "The dorsal side of the body." [FUBrf:Lee_et_al_2009]
+comment: Figs 72:1, 72:4, 72:26  in FUBrf:Lee_et_al_2009
+
+[Term]
+id: FUB:0000003
+name: ventule
+def: "The ventral side of the body." [FUBrf:Lee_et_al_2009]
+comment: Figs 72:1, 72:4, 72:26  in FUBrf:Lee_et_al_2009
+
+[Term]
+id: FUB:0000005
+name: knobble
+def: "Deflects air currents." [FUB:Curator]
+comment: Fig 72:4  in FUBrf:Lee_et_al_2009
+relationship: part_of FUB:0000002 ! dorsule
+
+[Term]
+id: FUB:0000006
+name: gizmoid
+def: "Protects the knobble." [FUB:Curator]
+comment: Fig 72:55  in FUBrf:Lee_et_al_2009
+relationship: part_of FUB:0000002 ! dorsule
+
+[Term]
+id: FUB:0000007
+name: zibinator
+def: "Responds to salt concentration." [FUB:Curator]
+comment: Fig 72:77  in FUBrf:Lee_et_al_2009
+relationship: part_of FUB:0000003 ! ventule
+
+[Term]
+id: FUB:0000008
+name: zibinator_shape
+def: "Edginess increases surface area for detectiion in low-water environments." [FUB:Curator]
+comment: Fig 72:77  in FUBrf:Lee_et_al_2009
+
+[Term]
+id: FUB:0000009
+name: zibinator_setae
+def: "Contain receptors to detect salinity." [FUB:Curator]
+comment: Fig 72:77  in FUBrf:Lee_et_al_2009
+relationship: part_of FUB:0000007 ! zibinator
+
+
+[Typedef]
+id: part_of
+name: part of
+

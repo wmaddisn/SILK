@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<mesquite>
+	<MessagesFromHome>
+		<version>1</version>
+		<currentReleaseVersion>
+			<versionString>1.11</versionString>
+			<version>111</version>
+			<downloadURL>http://mesquiteproject.org/packages/SILK/</downloadURL>
+		</currentReleaseVersion>
+	</MessagesFromHome>
+</mesquite>

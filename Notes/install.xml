@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<mesquite>
+	<MessagesFromHome>
+		<version>1</version>
+
+		<notice><!--SILK install -->
+			<forVersion>250</forVersion>
+			<forBuildNumberAtLeast>486</forBuildNumberAtLeast>
+			<noticeNumber>1</noticeNumber>
+			<messageType>update</messageType>
+			<identity>SILK</identity>
+			<updateVersion>001</updateVersion>
+			<packageName>SILK v. 1.11</packageName>
+			<explanation>
+			<![CDATA[<img src="http://mesquiteproject.org/packages/SILK/logo.gif"><p>
+			SILK enables images to be displayed with morphological matrices, useful especially for scoring matrices.  
+			For more information about the features of SILK, see the 
+			<a href = "http://mesquiteproject.org/packages/SILK/">SILK web page</a>.
+			]]>
+			</explanation>
+				<install>
+					<location>mesquite</location>
+					<file>silk</file>
+					<url>http://mesquiteproject.org/packages/SILK/SILK.zip</url>
+					<treatment>unzip</treatment>
+					<updateVersion>000</updateVersion>
+				</install>
+		</notice>
+	</MessagesFromHome>
+</mesquite>
