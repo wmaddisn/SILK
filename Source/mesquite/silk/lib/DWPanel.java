@@ -14,6 +14,10 @@ GNU Lesser General Public License.  (http://www.gnu.org/copyleft/lesser.html)
 package mesquite.silk.lib; 
 
 import mesquite.lib.*;
+import mesquite.lib.ui.MesquiteImage;
+import mesquite.lib.ui.MesquiteTool;
+import mesquite.lib.ui.MousePanel;
+
 import java.awt.*;
 
 public abstract class DWPanel extends MousePanel{

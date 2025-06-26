@@ -14,6 +14,12 @@ GNU Lesser General Public License.  (http://www.gnu.org/copyleft/lesser.html)
 package mesquite.silk.lib; 
 
 import mesquite.lib.*;
+import mesquite.lib.ui.ColorDistribution;
+import mesquite.lib.ui.MesquiteImage;
+import mesquite.lib.ui.MesquiteWindow;
+import mesquite.lib.ui.MousePanel;
+import mesquite.lib.ui.StringInABox;
+import mesquite.lib.ui.TextRotator;
 
 import java.awt.*;
 
